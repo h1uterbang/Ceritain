@@ -10,8 +10,8 @@
 // ==========================================
 // 0. DROPDOWN MENU (triggered by logo)
 // ==========================================
-const logoMenuBtn      = document.getElementById('btn-logo-menu');
-const dropdownMenu     = document.getElementById('dropdown-menu');
+const logoMenuBtn = document.getElementById('btn-logo-menu');
+const dropdownMenu = document.getElementById('dropdown-menu');
 const dropdownBackdrop = document.getElementById('dropdown-backdrop');
 const closeDropdownBtn = document.getElementById('btn-close-dropdown');
 
@@ -19,14 +19,14 @@ function openDropdownMenu() {
     dropdownMenu.classList.add('is-open');
     dropdownBackdrop.classList.add('is-open');
     logoMenuBtn && logoMenuBtn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('no-scroll');
 }
 
 function closeDropdownMenu() {
     dropdownMenu.classList.remove('is-open');
     dropdownBackdrop.classList.remove('is-open');
     logoMenuBtn && logoMenuBtn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('no-scroll');
 }
 
 if (logoMenuBtn) logoMenuBtn.addEventListener('click', openDropdownMenu);
@@ -40,14 +40,14 @@ const aboutOverlay = document.getElementById('about-modal-overlay');
 function openAboutModal() {
     if (aboutOverlay) {
         aboutOverlay.classList.add('show');
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('no-scroll');
     }
 }
 
 function closeAboutModal() {
     if (aboutOverlay) {
         aboutOverlay.classList.remove('show');
-        document.body.style.overflow = '';
+        document.documentElement.classList.remove('no-scroll');
     }
 }
 
@@ -84,7 +84,7 @@ function closeMobileMenu() { closeDropdownMenu(); }
 // QUIZ GUIDE → START QUIZ
 // ==========================================
 const btnMulaiKuis = document.getElementById('btn-mulai-kuis');
-const quizGuide    = document.getElementById('quiz-guide');
+const quizGuide = document.getElementById('quiz-guide');
 const quizQuestions = document.getElementById('quiz-questions');
 
 if (btnMulaiKuis) {
@@ -236,9 +236,9 @@ const themeIconLight = document.getElementById('theme-icon-light');
 const themeIconDark = document.getElementById('theme-icon-dark');
 const themeText = document.getElementById('theme-text');
 
-// Baca dari localStorage — default dark jika belum ada
+// Baca dari localStorage — default light jika belum ada
 const savedTheme = localStorage.getItem('ceritain-theme');
-let isLightMode = savedTheme === 'light';
+let isLightMode = savedTheme !== 'dark';
 
 function applyTheme(light) {
     if (light) {
@@ -310,7 +310,7 @@ const navObserver = new IntersectionObserver((entries) => {
 sectionsNav.forEach(sec => navObserver.observe(sec));
 
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         switchScreen(targetId);
@@ -350,19 +350,19 @@ function analyzeStory(text) {
     cleanText = cleanText.replace(/\s{2,}/g, " ");
     let tokens = cleanText.split(" ");
     let matchedKeywords = [];
-    
+
     tokens.forEach(token => {
         const word = token.trim();
         if (word.length > 2 && masterKeywords.includes(word)) {
-            if(!matchedKeywords.includes(word)) {
+            if (!matchedKeywords.includes(word)) {
                 matchedKeywords.push(word);
             }
         }
     });
 
     masterKeywords.forEach(keyword => {
-        if(keyword.includes(" ") && cleanText.includes(keyword)) {
-            if(!matchedKeywords.includes(keyword)) {
+        if (keyword.includes(" ") && cleanText.includes(keyword)) {
+            if (!matchedKeywords.includes(keyword)) {
                 matchedKeywords.push(keyword);
             }
         }
@@ -373,18 +373,18 @@ function analyzeStory(text) {
 
 function showAnalysisModal() {
     analysisModalOverlay.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('no-scroll');
 }
 
 function closeAnalysisModal() {
     analysisModalOverlay.classList.remove('show');
-    document.body.style.overflow = '';
+    document.documentElement.classList.remove('no-scroll');
 }
 
 btnSelesaiCerita.addEventListener('click', () => {
     const text = storyInput.value;
     const matches = analyzeStory(text);
-    
+
     if (keywordCountDisplay) keywordCountDisplay.textContent = matches.length;
     if (keywordTagsContainer) keywordTagsContainer.textContent = matches.length > 0 ? matches.join(', ') : '-';
 
@@ -434,8 +434,8 @@ function resetApp() {
     if (quizGuide) quizGuide.style.display = '';
     if (quizQuestions) quizQuestions.style.display = 'none';
     userAnswers = new Array(dassQuestions.length).fill(null);
-    
-    if(dassQuestions.length > 0) {
+
+    if (dassQuestions.length > 0) {
         dassQuestionText.textContent = dassQuestions[0].text;
         currentQSpan.textContent = "1";
     }
@@ -448,7 +448,7 @@ function resetApp() {
         severityElem.style.color = severityColors["Normal"];
         document.querySelector(`#card-${key} .score-circle`).style.borderColor = severityColors["Normal"];
     });
-    
+
     document.getElementById('recommendation-list').innerHTML = '';
     switchScreen('home');
 }
@@ -681,25 +681,25 @@ observer.observe(document.body, { childList: true, subtree: true });
 window.addEventListener('load', () => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    tl.fromTo(".top-nav", 
-        { y: -100, opacity: 0 }, 
+    tl.fromTo(".top-nav",
+        { y: -100, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, backdropFilter: "blur(12px)" }
     )
-    .fromTo(".logo-text, .nav-link, .btn-icon", 
-        { y: -20, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
-        "-=0.5"
-    )
-    .fromTo(".blob-1", 
-        { scale: 0, opacity: 0 }, 
-        { scale: 1, opacity: 0.35, duration: 2, ease: "elastic.out(1, 0.5)" },
-        "-=1"
-    )
-    .fromTo(".blob-2", 
-        { scale: 0, opacity: 0 }, 
-        { scale: 1, opacity: 0.35, duration: 2, ease: "elastic.out(1, 0.5)" },
-        "-=1.5"
-    );
+        .fromTo(".logo-text, .nav-link, .btn-icon",
+            { y: -20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
+            "-=0.5"
+        )
+        .fromTo(".blob-1",
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 0.35, duration: 2, ease: "elastic.out(1, 0.5)" },
+            "-=1"
+        )
+        .fromTo(".blob-2",
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 0.35, duration: 2, ease: "elastic.out(1, 0.5)" },
+            "-=1.5"
+        );
 
     const btnMulaiSesiBaru = document.getElementById('btn-kembali-mulai');
     if (btnMulaiSesiBaru) {
@@ -713,16 +713,16 @@ window.addEventListener('load', () => {
         function shakeCTA() {
             gsap.timeline()
                 .to(btnMulaiSesiBaru, { x: -4, duration: 0.07, ease: 'power1.inOut' })
-                .to(btnMulaiSesiBaru, { x:  4, duration: 0.07, ease: 'power1.inOut' })
+                .to(btnMulaiSesiBaru, { x: 4, duration: 0.07, ease: 'power1.inOut' })
                 .to(btnMulaiSesiBaru, { x: -3, duration: 0.07, ease: 'power1.inOut' })
-                .to(btnMulaiSesiBaru, { x:  3, duration: 0.07, ease: 'power1.inOut' })
-                .to(btnMulaiSesiBaru, { x:  0, duration: 0.07, ease: 'power1.out'  })
+                .to(btnMulaiSesiBaru, { x: 3, duration: 0.07, ease: 'power1.inOut' })
+                .to(btnMulaiSesiBaru, { x: 0, duration: 0.07, ease: 'power1.out' })
                 .then(() => setTimeout(shakeCTA, 6000));
         }
         setTimeout(shakeCTA, 3000);
     }
 
-    if(dassQuestions && dassQuestions.length > 0) {
+    if (dassQuestions && dassQuestions.length > 0) {
         dassQuestionText.textContent = dassQuestions[0].text;
         currentQSpan.textContent = "1";
     }
@@ -736,7 +736,7 @@ window.addEventListener('load', () => {
         homeSection.addEventListener('mousemove', (e) => {
             const rect = homeSection.getBoundingClientRect();
             const nx = (e.clientX - rect.left) / rect.width - 0.5;
-            const ny = (e.clientY - rect.top)  / rect.height - 0.5;
+            const ny = (e.clientY - rect.top) / rect.height - 0.5;
 
             gsap.to(heroStar, {
                 x: nx * 60,
@@ -754,7 +754,7 @@ window.addEventListener('load', () => {
         });
 
         homeSection.addEventListener('mouseleave', () => {
-            gsap.to(heroStar,  { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
+            gsap.to(heroStar, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
             gsap.to(heroRight, { x: 0, y: 0, duration: 1.5, ease: 'power2.out' });
         });
     }
