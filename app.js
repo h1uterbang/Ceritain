@@ -236,9 +236,9 @@ const themeIconLight = document.getElementById('theme-icon-light');
 const themeIconDark = document.getElementById('theme-icon-dark');
 const themeText = document.getElementById('theme-text');
 
-// Baca dari localStorage — default light jika belum ada
+// Baca dari localStorage — default dark jika belum ada
 const savedTheme = localStorage.getItem('ceritain-theme');
-let isLightMode = savedTheme !== 'dark';
+let isLightMode = savedTheme === 'light';
 
 function applyTheme(light) {
     if (light) {
