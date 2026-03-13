@@ -3,64 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceritain — Apakah kamu sedang stres tanpa sadar?</title>
-
-    <!-- Primary Meta -->
-    <meta name="title" content="Ceritain — Apakah kamu sedang stres tanpa sadar?">
-    <meta name="description" content="Skrining stres, kecemasan & depresi gratis lewat DASS-21. Mulai dengan bercerita.">
-    <meta name="keywords" content="skrining mental health, DASS-21, stres, kecemasan, depresi, kesehatan mental, Indonesia">
-    <meta name="author" content="Ceritain">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ceritain-eight.vercel.app/">
-    <meta property="og:title" content="Ceritain — Apakah kamu sedang stres tanpa sadar?">
-    <meta property="og:description" content="Skrining stres, kecemasan & depresi gratis lewat DASS-21. Mulai dengan bercerita.">
-    <meta property="og:image" content="https://ceritain-eight.vercel.app/og-image.png">
+    <title>Ceritain - Ruang Cerita & Skrining DASS-21</title>
+    <meta name="description" content="Ceritain adalah ruang aman untuk bercerita sekaligus menyediakan skrining kondisi psikologis awal berbasis kuesioner DASS-21.">
+    <!-- OG / Social Meta -->
+    <meta property="og:title" content="Apakah kamu sedang stres tanpa sadar?">
+    <meta property="og:description" content="Ceritain — ruang aman untuk bercerita dan skrining psikologis gratis berbasis DASS-21.">
+    <meta property="og:image" content="/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Ceritain — Skrining Psikologis Gratis">
-    <meta property="og:site_name" content="Ceritain">
-    <meta property="og:locale" content="id_ID">
-
-    <!-- Twitter Card -->
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ceritain-eight.vercel.app/">
-    <meta name="twitter:title" content="Ceritain — Apakah kamu sedang stres tanpa sadar?">
-    <meta name="twitter:description" content="Skrining stres, kecemasan & depresi gratis lewat DASS-21. Mulai dengan bercerita.">
-    <meta name="twitter:image" content="https://ceritain-eight.vercel.app/og-image.png">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://ceritain-eight.vercel.app/">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
-
-    <!-- Preconnect for Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="twitter:image" content="/og-image.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
     <!-- Anti-flash: apply saved theme synchronously sebelum paint -->
     <script>
         (function(){
             try {
                 var t = localStorage.getItem('ceritain-theme');
-                if (t === 'dark') {
+                // Default dark — hanya tetap light jika user sudah pilih light
+                if (t === 'light') {
+                    document.documentElement.removeAttribute('data-theme');
+                } else {
                     document.documentElement.setAttribute('data-theme','dark');
                 }
-            } catch(e){}
+            } catch(e){
+                document.documentElement.setAttribute('data-theme','dark');
+            }
         })();
+    </script>
     </script>
 </head>
 <body>
 
     <header id="top-nav" class="top-nav">
+        <!-- Logo: klik buka dropdown menu -->
         <button id="btn-logo-menu" class="logo-text logo-btn" aria-label="Buka menu" aria-expanded="false">
             <span class="nav-logo-icon">
                 <span class="nav-logo-star">✦</span>
@@ -68,6 +46,7 @@
             Ceritain
         </button>
 
+        <!-- Desktop nav (tengah) -->
         <nav class="main-nav" id="main-nav" style="display: flex; align-items: center;">
             <a href="#home" class="nav-link active">Mulai</a>
             <a href="#storytelling" class="nav-link">Curhat</a>
@@ -76,12 +55,13 @@
             <a href="#thankyou-section" class="nav-link">Selesai</a>
         </nav>
 
+        <!-- Kanan: theme toggle + back -->
         <div class="nav-right">
-            <button id="btn-theme-toggle" class="btn-icon" style="display: flex; align-items: center;" aria-label="Toggle tema">
+            <button id="btn-theme-toggle" class="btn-icon" style="display: flex; align-items: center;">
                 <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
-            <button id="btn-back" class="btn-icon" style="display: none;" aria-label="Kembali">
+            <button id="btn-back" class="btn-icon" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
@@ -91,9 +71,10 @@
         </div>
     </header>
 
-    <!-- Dropdown Menu -->
+    <!-- Dropdown Menu (triggered by logo click) -->
     <div id="dropdown-menu" class="dropdown-menu" role="dialog" aria-label="Menu navigasi">
         <div class="dropdown-menu-inner">
+            <!-- Header: logo kiri, X kanan -->
             <div class="dropdown-header">
                 <button class="logo-text logo-btn dropdown-logo" onclick="closeDropdownMenu()">
                     <span class="nav-logo-icon"><span class="nav-logo-star">✦</span></span>
@@ -104,6 +85,7 @@
                 </button>
             </div>
 
+            <!-- Nav links besar -->
             <nav class="dropdown-nav">
                 <a href="#home" class="dropdown-nav-link" onclick="closeDropdownMenu()">Mulai</a>
                 <a href="#storytelling" class="dropdown-nav-link" onclick="closeDropdownMenu()">Curhat</a>
@@ -112,20 +94,23 @@
                 <a href="#thankyou-section" class="dropdown-nav-link" onclick="closeDropdownMenu()">Selesai</a>
             </nav>
 
+            <!-- Divider -->
             <div class="dropdown-divider"></div>
 
+            <!-- Footer link: Tentang Ceritain -->
             <div class="dropdown-footer">
                 <span class="dropdown-footer-label">Ingin tahu lebih?</span>
                 <button class="dropdown-about-btn" id="btn-open-about" onclick="closeDropdownMenu(); openAboutModal()">Tentang Ceritain</button>
             </div>
         </div>
     </div>
+    <!-- Dropdown Backdrop -->
     <div id="dropdown-backdrop" class="dropdown-backdrop" onclick="closeDropdownMenu()"></div>
 
     <!-- Modal: Tentang Ceritain -->
-    <div id="about-modal-overlay" class="about-modal-overlay" role="dialog" aria-modal="true" aria-label="Tentang Ceritain">
+    <div id="about-modal-overlay" class="about-modal-overlay">
         <div class="about-modal-box">
-            <button class="btn-close-modal" onclick="closeAboutModal()" title="Tutup" aria-label="Tutup modal">&times;</button>
+            <button class="btn-close-modal" onclick="closeAboutModal()" title="Tutup">&times;</button>
             <div class="about-modal-logo">
                 <span style="font-size:2rem; color: var(--accent-color);">✦</span>
                 <span class="about-modal-brand">Ceritain</span>
@@ -146,6 +131,7 @@
 
     <!-- 1. Hero Section -->
     <section id="home" class="screen hero-screen">
+        <!-- Left: Text Content -->
         <div class="hero-left" data-aos="fade-right" data-aos-duration="900">
             <h1 class="hero-title">
                 Luapkan<br>
@@ -163,6 +149,7 @@
             </div>
         </div>
 
+        <!-- Right: Decorative Visual -->
         <div class="hero-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
             <div class="hero-visual-stack">
                 <div class="hero-star-wrap">
@@ -179,6 +166,7 @@
     <!-- 2. Storytelling Section -->
     <section id="storytelling" class="screen">
         <div class="story-split">
+            <!-- Kiri: info -->
             <div class="story-left" data-aos="fade-right" data-aos-duration="800">
                 <p class="hero-eyebrow">Ruang Aman</p>
                 <h2 class="story-heading">Apa yang sedang<br><span class="hero-accent">membebanimu?</span></h2>
@@ -189,10 +177,11 @@
                     <span class="story-pill">🤍 Tanpa penilaian</span>
                 </div>
             </div>
+            <!-- Kanan: textarea -->
             <div class="story-right" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
                 <div class="textarea-wrapper">
-                    <textarea id="story-input" placeholder="Ketik ceritamu di sini..." aria-label="Ceritakan perasaanmu"></textarea>
-                    <button id="btn-selesai-cerita" class="btn-send" disabled title="Kirim cerita" aria-label="Kirim cerita">
+                    <textarea id="story-input" placeholder="Ketik ceritamu di sini..."></textarea>
+                    <button id="btn-selesai-cerita" class="btn-send" disabled title="Kirim cerita">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -210,7 +199,7 @@
     <section id="survey" class="screen">
         <div class="container dass-content">
 
-            <!-- Panduan -->
+            <!-- Panduan: tampil sebelum kuis dimulai -->
             <div id="quiz-guide" class="quiz-guide">
                 <h2 class="quiz-guide-title" data-aos="fade-up">Sebelum Memulai</h2>
                 <ol class="quiz-guide-list" data-aos="fade-up" data-aos-delay="100">
@@ -227,21 +216,22 @@
                 </div>
             </div>
 
-            <!-- Kuis -->
+            <!-- Kuis: tersembunyi dulu -->
             <div id="quiz-questions" style="display:none; width:100%;">
                 <div class="progress-container">
                     <div class="progress-info">
                         <span>Pertanyaan <span id="current-q">1</span>/21</span>
                     </div>
-                    <div class="progress-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar-bg">
                         <div id="progress-bar-fill" class="progress-bar-fill"></div>
                     </div>
                 </div>
                 
                 <div class="question-container">
-                    <span class="question-number-deco" id="question-number-deco" aria-hidden="true">01</span>
+                    <!-- Nomor soal dekoratif -->
+                    <span class="question-number-deco" id="question-number-deco">01</span>
                     <h2 id="dass-question-text" class="question-text">Loading question...</h2>
-                    <div class="answers-container" role="group" aria-label="Pilih jawaban">
+                    <div class="answers-container">
                         <button class="btn-answer" data-value="0">Tidak pernah sama sekali</button>
                         <button class="btn-answer" data-value="1">Kadang-kadang</button>
                         <button class="btn-answer" data-value="2">Sering</button>
@@ -249,12 +239,13 @@
                     </div>
                 </div>
 
+                <!-- Navigasi Back / Next -->
                 <div class="quiz-nav">
-                    <button id="btn-quiz-back" class="btn-quiz-nav btn-quiz-back" disabled aria-label="Soal sebelumnya">
+                    <button id="btn-quiz-back" class="btn-quiz-nav btn-quiz-back" disabled>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                         Kembali
                     </button>
-                    <button id="btn-quiz-next" class="btn-quiz-nav btn-quiz-next" disabled aria-label="Soal berikutnya">
+                    <button id="btn-quiz-next" class="btn-quiz-nav btn-quiz-next" disabled>
                         Lanjut
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
@@ -274,7 +265,7 @@
                 <div class="result-card" id="card-depression">
                     <h3>Depresi</h3>
                     <div class="score-circle">
-                        <svg class="score-ring" viewBox="0 0 80 80" aria-hidden="true"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-depression" cx="40" cy="40" r="34"/></svg>
+                        <svg class="score-ring" viewBox="0 0 80 80"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-depression" cx="40" cy="40" r="34"/></svg>
                         <span class="score-value" id="score-depression">0</span>
                     </div>
                     <p class="severity" id="severity-depression">Normal</p>
@@ -283,7 +274,7 @@
                 <div class="result-card" id="card-anxiety">
                     <h3>Kecemasan</h3>
                     <div class="score-circle">
-                        <svg class="score-ring" viewBox="0 0 80 80" aria-hidden="true"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-anxiety" cx="40" cy="40" r="34"/></svg>
+                        <svg class="score-ring" viewBox="0 0 80 80"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-anxiety" cx="40" cy="40" r="34"/></svg>
                         <span class="score-value" id="score-anxiety">0</span>
                     </div>
                     <p class="severity" id="severity-anxiety">Normal</p>
@@ -292,17 +283,11 @@
                 <div class="result-card" id="card-stress">
                     <h3>Stres</h3>
                     <div class="score-circle">
-                        <svg class="score-ring" viewBox="0 0 80 80" aria-hidden="true"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-stress" cx="40" cy="40" r="34"/></svg>
+                        <svg class="score-ring" viewBox="0 0 80 80"><circle class="score-ring-bg" cx="40" cy="40" r="34"/><circle class="score-ring-fill" id="ring-stress" cx="40" cy="40" r="34"/></svg>
                         <span class="score-value" id="score-stress">0</span>
                     </div>
                     <p class="severity" id="severity-stress">Normal</p>
                 </div>
-            </div>
-
-            <!-- Disclaimer klinis — FIX: ditambahkan langsung di halaman hasil -->
-            <div class="result-disclaimer" data-aos="fade-up" data-aos-delay="250">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Hasil ini bersifat indikatif, <strong>bukan diagnosis klinis</strong>. Konsultasikan dengan profesional kesehatan mental untuk penanganan lebih lanjut.
             </div>
             
             <div class="recommendation-container" data-aos="fade-up" data-aos-delay="300">
@@ -318,10 +303,11 @@
         </div>
     </section>
 
-    <!-- 5. Thank You Section -->
+    <!-- General Thank You / Supportive Section -->
     <section id="thankyou-section" class="screen">
         <div class="container thankyou-content">
-            <div class="thankyou-icon" data-aos="zoom-in" aria-hidden="true">✦</div>
+            <!-- Ikon dekoratif -->
+            <div class="thankyou-icon" data-aos="zoom-in">✦</div>
 
             <h2 data-aos="fade-up">Terima kasih<br>sudah berbagi.</h2>
 
@@ -347,13 +333,10 @@
     </section>
 
     <!-- Analysis Result Modal -->
-    <div id="analysis-modal-overlay" class="analysis-modal-overlay" role="dialog" aria-modal="true" aria-label="Hasil analisis cerita">
+    <div id="analysis-modal-overlay" class="analysis-modal-overlay">
         <div id="analysis-result" class="result-box">
-            <button id="btn-close-analysis" class="btn-close-modal" title="Tutup" aria-label="Tutup">&times;</button>
+            <button id="btn-close-analysis" class="btn-close-modal" title="Tutup">&times;</button>
             <p id="analysis-message"></p>
-            <div id="keyword-info" style="display:none;">
-                <span id="keyword-count">0</span> kata terdeteksi: <span id="keyword-tags-text"></span>
-            </div>
             <button id="btn-lanjut-kuis" class="btn primary" style="display: none;">Mulai Tes Kuesioner</button>
         </div>
     </div>
@@ -370,7 +353,7 @@
                 </div>
                 <span class="footer-copy">© 2026 Ceritain. All rights reserved.</span>
             </div>
-            <nav class="footer-nav" aria-label="Footer navigation">
+            <nav class="footer-nav">
                 <a href="#" class="footer-link">Privacy Policy</a>
                 <a href="#" class="footer-link">Terms of Service</a>
                 <a href="#" class="footer-link">Contact</a>
@@ -378,6 +361,7 @@
         </div>
     </footer>
 
+    <!-- Scripts: AOS, GSAP, and Custom App Logic -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="app.js"></script>
