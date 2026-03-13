@@ -99,13 +99,13 @@ html {
     padding: 0;
     background-color: var(--bg-main);
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
     scrollbar-gutter: stable;
 }
 
 html.no-scroll {
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 body {
@@ -119,7 +119,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: auto;
     position: relative;
     width: 100%;
@@ -338,6 +338,7 @@ h3 {
     z-index: 1;
     margin: 0;
     padding: 80px 1rem 2rem 1rem;
+    overflow-x: clip;
 }
 
 /* Section non-hero tidak perlu scroll-margin karena padding sudah handle navbar */
@@ -409,6 +410,7 @@ h3 {
     bottom: -100px;
     right: -200px;
     animation-delay: -5s;
+    max-width: 100vw;
 }
 
 @keyframes float {
@@ -1338,12 +1340,12 @@ textarea::placeholder {
 .btn-answer:hover {
     background-color: var(--bg-surface-solid);
     border-color: var(--border-glass-hover);
-    transform: translateX(8px);
+    transform: translateY(-1px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-answer:active {
-    transform: translateX(4px);
+    transform: translateY(0px);
     background-color: var(--border-glass);
 }
 
@@ -2333,7 +2335,7 @@ textarea::placeholder {
         scroll-margin-top: 0;
         width: 100%;
         box-sizing: border-box;
-        overflow-x: hidden;
+        overflow-x: clip;
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
