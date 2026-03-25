@@ -1,0 +1,87 @@
+
+<svg width="100%" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGrad" cx="75%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#F5EDE0"/>
+      <stop offset="100%" stop-color="#F0E8D8"/>
+    </radialGradient>
+    <radialGradient id="circleGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#E8C9A8"/>
+      <stop offset="100%" stop-color="#C8A07A"/>
+    </radialGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4724A"/>
+      <stop offset="100%" stop-color="#8B3A1F"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="circleClip">
+      <circle cx="1010" cy="100" r="220"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Grain texture overlay -->
+  <rect width="1200" height="630" fill="#B8956A" opacity="0.04" filter="url(#grain)"/>
+
+  <!-- Decorative large circle (top right) -->
+  <circle cx="1055" cy="80" r="220" fill="url(#circleGrad)" opacity="0.55"/>
+
+  <!-- Decorative small circle accent -->
+  <circle cx="980" cy="560" r="90" fill="#D4A07A" opacity="0.22"/>
+
+  <!-- Decorative dot cluster -->
+  <circle cx="72" cy="570" r="5" fill="#C4855A" opacity="0.3"/>
+  <circle cx="88" cy="555" r="3" fill="#C4855A" opacity="0.2"/>
+  <circle cx="62" cy="552" r="3.5" fill="#C4855A" opacity="0.25"/>
+
+  <!-- Brand: Star icon + Ceritain -->
+  <g transform="translate(72, 68)">
+    <!-- Diamond/star shape -->
+    <path d="M16 0 L20 12 L32 16 L20 20 L16 32 L12 20 L0 16 L12 12 Z" fill="#C4552A"/>
+    <!-- Ceritain wordmark -->
+    <text x="46" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#3D1F0F" letter-spacing="0.5">Ceritain</text>
+  </g>
+
+  <!-- Sub-header -->
+  <text x="72" y="148" font-family="'Inter', 'Roboto', Arial, sans-serif" font-size="15" font-weight="600" fill="#8B6045" letter-spacing="4.5">SKRINING PSIKOLOGIS GRATIS</text>
+
+  <!-- Main headline line 1 -->
+  <text x="72" y="258" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#2A1208">Apakah kamu</text>
+
+  <!-- Main headline line 2 -->
+  <text x="72" y="358" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#2A1208">sedang</text>
+
+  <!-- Main headline line 3 — colored -->
+  <text x="72" y="458" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#C4552A">stres tanpa sadar?</text>
+
+  <!-- Tags / Pills -->
+  <g transform="translate(72, 502)">
+    <!-- Pill 1: Stres -->
+    <rect x="0" y="0" width="108" height="44" rx="22" fill="none" stroke="#8B4A2A" stroke-width="1.5"/>
+    <text x="54" y="27" font-family="'Inter', 'Roboto', Arial, sans-serif" font-size="15" font-weight="600" fill="#6B3018" text-anchor="middle">Stres</text>
+
+    <!-- Pill 2: Kecemasan -->
+    <rect x="124" y="0" width="148" height="44" rx="22" fill="none" stroke="#8B4A2A" stroke-width="1.5"/>
+    <text x="198" y="27" font-family="'Inter', 'Roboto', Arial, sans-serif" font-size="15" font-weight="600" fill="#6B3018" text-anchor="middle">Kecemasan</text>
+
+    <!-- Pill 3: Depresi -->
+    <rect x="288" y="0" width="118" height="44" rx="22" fill="none" stroke="#8B4A2A" stroke-width="1.5"/>
+    <text x="347" y="27" font-family="'Inter', 'Roboto', Arial, sans-serif" font-size="15" font-weight="600" fill="#6B3018" text-anchor="middle">Depresi</text>
+  </g>
+
+  <!-- Right side: Large decorative star / brand mark -->
+  <g transform="translate(920, 310)">
+    <path d="M60 0 L74 44 L118 60 L74 76 L60 120 L46 76 L2 60 L46 44 Z" fill="#C4552A" opacity="0.18"/>
+    <path d="M60 14 L71 46 L104 60 L71 74 L60 106 L49 74 L16 60 L49 46 Z" fill="#9E3E1A" opacity="0.22"/>
+    <path d="M60 28 L68 48 L88 60 L68 72 L60 92 L52 72 L32 60 L52 48 Z" fill="#C4552A" opacity="0.55"/>
+  </g>
+
+  <!-- Bottom safe zone line (visual only, invisible) -->
+</svg>
