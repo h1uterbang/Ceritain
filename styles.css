@@ -550,6 +550,26 @@ h1, h2, h3 {
     height: 420px;
 }
 
+/* ── Minimal typographic layout ── */
+.hero-minimal {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.hero-minimal-line {
+    width: 3rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    margin: 0.1rem 0;
+}
+
+
+
 /* ── Ambient Glow ── */
 .hero-card-glow {
     position: absolute;
