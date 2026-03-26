@@ -121,18 +121,18 @@ const keyword_baku = [
 const keyword_tidak_baku = [
     // 100 Kata Non-Formal/Slang/Sehari-hari
     "burnout", "overthinking", "mumet", "capek", "badmood", "males", "bete", "gabut",
-    "insecure", "mental breakdown", "down", "drop", "ambyar", "ancur", "bodo amat",
+    "insecure", "mental breakdown", "down", "drop", "ambyar", "hancur", "bodo amat",
     "buntu", "puyeng", "pusing", "ruwet", "stres", "sumpek", "suntuk", "spaneng",
     "galau", "gegana", "ngenes", "nyesek", "sedih", "suwung", "kosong", "kacau",
     "kelabu", "nangis", "mewek", "baper", "emosi", "kesel", "gedek", "dongkol",
     "mangkel", "muak", "enek", "eneg", "cape", "lemes", "loyo", "mager", "pegel",
-    "remuk", "tepar", "tumbang", "tewas", "modar", "modyar", "mati", "kelar",
-    "nyerah", "nyesel", "nyiksa", "nyut-nyutan", "berat", "beban", "mentok", "bego",
-    "goblok", "tolol", "bloon", "bodoh", "gila", "sinting", "miring", "stres",
-    "edan", "gaje", "krik", "jayus", "wagu", "zonk", "amsyong", "buntung", "pesimis",
+    "remuk", "tepar", "tumbang", "kelelahan", "menyerah", "putus asa", "nyerah",
+    "nyesel", "nyiksa", "nyut-nyutan", "berat", "beban", "mentok", "bingung",
+    "linglung", "blank", "bengong", "hilang arah", "gila", "sinting", "miring", "stres",
+    "kalut", "gaje", "hampa", "lelah", "payah", "zonk", "sial", "rugi", "pesimis",
     "halu", "kepo", "pansos", "salty", "toxic", "red flag", "green flag", "healing",
     "coping", "trigger", "fomo", "jomo", "yolo", "vibes", "mood", "anxious", "depressed",
-    "sadboy", "sadgirl", "fakboi", "buaya"
+    "sadboy", "sadgirl", "insecure", "hopeless"
 ];
 
 const masterKeywords = [...keyword_baku, ...keyword_tidak_baku];
