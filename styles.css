@@ -99,8 +99,8 @@ html {
     padding: 0;
     background-color: var(--bg-main);
     scroll-behavior: smooth;
-    overflow-x: hidden;  /* ← tambah ini */
-    max-width: 100%;     /* ← tambah ini */
+    overflow-x: hidden;  
+    max-width: 100%;     
 }
 
 body {
@@ -118,8 +118,8 @@ body {
     position: relative;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.5s ease, color 0.5s ease;
-    overflow-x: hidden;  /* ← tambah ini juga di body */
-    max-width: 100%;     /* ← tambah ini juga di body */
+    overflow-x: hidden;  
+    max-width: 100%;     
 }
 
 body::before {
