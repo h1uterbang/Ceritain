@@ -280,7 +280,8 @@ window.addEventListener('scroll', () => {
 function switchScreen(targetScreenId) {
     const target = document.getElementById(targetScreenId);
     if (!target) return;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: targetTop, left: 0, behavior: 'smooth' });
 }
 
 // Intersection Observer for Sticky Nav
