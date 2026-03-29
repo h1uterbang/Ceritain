@@ -478,7 +478,7 @@ function renderQuestion() {
         const decoBig = document.getElementById('question-number-deco');
         if (decoBig) decoBig.textContent = String(currentQuestionIndex + 1).padStart(2, '0');
 
-        const progressPercent = ((currentQuestionIndex) / dassQuestions.length) * 100;
+        const progressPercent = ((currentQuestionIndex + 1) / dassQuestions.length) * 100;
         progressBarFill.style.width = `${progressPercent}%`;
 
         // Highlight jawaban yang sudah dipilih sebelumnya
@@ -573,11 +573,11 @@ if (btnQuizBack) {
 // ==========================================
 function evaluateSeverity(score, type) {
     const rules = scoringRules[type];
-    if (score <= rules.normal[1]) return "Normal";
-    if (score <= rules.ringan[1]) return "Ringan";
-    if (score <= rules.sedang[1]) return "Sedang";
-    if (score <= rules.berat[1]) return "Berat";
-    return "Sangat Berat";
+    if (score >= rules.sangatBerat[0])                                    return "Sangat Berat";
+    if (score >= rules.berat[0]   && score <= rules.berat[1])             return "Berat";
+    if (score >= rules.sedang[0]  && score <= rules.sedang[1])            return "Sedang";
+    if (score >= rules.ringan[0]  && score <= rules.ringan[1])            return "Ringan";
+    return "Normal";
 }
 
 function calculateResults() {
@@ -633,27 +633,33 @@ function updateCard(type, score, severity) {
 function generateRecommendations(severities) {
     const list = document.getElementById('recommendation-list');
     list.innerHTML = '';
-
-    let hasSevere = false;
-    let hasMild = false;
-
-    Object.values(severities).forEach(sev => {
-        if (sev === "Berat" || sev === "Sangat Berat") hasSevere = true;
-        if (sev === "Ringan" || sev === "Sedang") hasMild = true;
-    });
-
     const recommendations = [];
 
-    if (hasSevere) {
-        recommendations.push("<b>Penting:</b> Skor Anda menunjukkan tingkat tekanan psikologis yang tinggi. Kami sangat menyarankan Anda untuk berkonsultasi dengan profesional kesehatan mental (psikolog/psikiater) untuk mendapatkan bantuan yang tepat.");
-        recommendations.push("Jangan ragu untuk bercerita kepada orang terdekat yang Anda percayai. Anda tidak harus menghadapi ini sendirian.");
-    } else if (hasMild) {
-        recommendations.push("Ambil waktu untuk beristirahat. Lakukan teknik relaksasi seperti latihan pernapasan dalam (deep breathing) atau meditasi ringan.");
-        recommendations.push("Pertimbangkan untuk mengurangi pemicu stres harian Anda. Lakukan aktivitas yang Anda senangi.");
-        recommendations.push("Jika perasaan ini bertahan lama atau mengganggu aktivitas Anda, berkonsultasi dengan profesional bisa menjadi pilihan yang baik.");
-    } else {
-        recommendations.push("Kondisi Anda saat ini terpantau dalam batas normal yang sehat. Terus pertahankan pola hidup sehat dan manajemen stres yang baik!");
-        recommendations.push("Tetap biasakan untuk mengenali, menerima, dan meluapkan emosi Anda dengan cara yang positif setiap hari.");
+    // --- DEPRESI ---
+    if (severities.depression === "Berat" || severities.depression === "Sangat Berat") {
+        recommendations.push("<b>Depresi:</b> Tingkat depresi kamu tergolong tinggi. Sangat disarankan untuk segera berkonsultasi dengan psikolog atau psikiater untuk mendapatkan penanganan yang tepat.");
+    } else if (severities.depression === "Ringan" || severities.depression === "Sedang") {
+        recommendations.push("<b>Depresi:</b> Coba luangkan waktu untuk melakukan aktivitas yang kamu sukai dan ceritakan perasaanmu kepada orang yang kamu percaya.");
+    }
+
+    // --- KECEMASAN ---
+    if (severities.anxiety === "Berat" || severities.anxiety === "Sangat Berat") {
+        recommendations.push("<b>Kecemasan:</b> Tingkat kecemasan kamu tergolong tinggi. Latihan pernapasan dalam (deep breathing) dan konsultasi dengan profesional kesehatan mental sangat dianjurkan.");
+    } else if (severities.anxiety === "Ringan" || severities.anxiety === "Sedang") {
+        recommendations.push("<b>Kecemasan:</b> Coba terapkan teknik relaksasi seperti meditasi ringan atau journaling untuk membantu mengelola rasa cemas sehari-hari.");
+    }
+
+    // --- STRES ---
+    if (severities.stress === "Berat" || severities.stress === "Sangat Berat") {
+        recommendations.push("<b>Stres:</b> Tingkat stres kamu tergolong tinggi. Kurangi beban aktivitas yang tidak mendesak dan pertimbangkan untuk berbicara dengan profesional.");
+    } else if (severities.stress === "Ringan" || severities.stress === "Sedang") {
+        recommendations.push("<b>Stres:</b> Pastikan istirahat yang cukup dan coba kurangi pemicu stres harian. Aktivitas fisik ringan secara rutin juga dapat membantu.");
+    }
+
+    // --- SEMUA NORMAL ---
+    if (recommendations.length === 0) {
+        recommendations.push("Kondisi kamu saat ini terpantau dalam batas normal yang sehat. Terus pertahankan pola hidup sehat dan manajemen stres yang baik!");
+        recommendations.push("Tetap biasakan untuk mengenali, menerima, dan meluapkan emosi kamu dengan cara yang positif setiap hari.");
     }
 
     recommendations.forEach(rec => {
